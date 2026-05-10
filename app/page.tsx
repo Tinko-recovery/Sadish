@@ -606,7 +606,7 @@ export default function Portfolio() {
                       </div>
                       <h3 className="text-xl font-bold text-slate-900 leading-tight mb-6 group-hover:text-[#106EBE] transition-colors">{post.title}</h3>
                       <div className="mt-auto pt-6 border-t border-slate-100 flex justify-between items-center">
-                        <span className="text-xs font-bold text-[#106EBE] flex items-center gap-2 group-hover:gap-4 transition-all">Read Article <ArrowUpRight size={14} /></span>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#106EBE] flex items-center gap-2 group-hover:gap-4 transition-all">Read Article <ArrowUpRight size={14} /></a>
                         <Share2 size={16} className="text-slate-300 hover:text-[#106EBE] cursor-pointer" />
                       </div>
                     </div>
