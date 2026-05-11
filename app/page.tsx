@@ -183,7 +183,9 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatLogs.length > 1) {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [chatLogs]);
 
   const handleChat = (e: React.FormEvent) => {
@@ -298,7 +300,7 @@ export default function Portfolio() {
               <div className="absolute -inset-1 bg-gradient-to-r from-[#106EBE] to-[#0FFCBE] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
               <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl">
                 <Image 
-                  src="/profile.jpg" 
+                  src="/Sadish/profile.jpg" 
                   alt={RESUME_DATA.name} 
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
