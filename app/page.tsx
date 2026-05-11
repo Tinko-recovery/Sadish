@@ -3,12 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Shield, Briefcase, Code, Database, Cpu, Zap, 
-  Download, Award, BookOpen, Send, User, 
-  ChevronRight, ExternalLink, Mail, Linkedin, Github,
-  TrendingUp, Milestone, GraduationCap, MapPin, Calendar,
-  Globe, Server, Layout, MessageSquare, FileText, ArrowUpRight,
-  Phone, Share2, Search, Newspaper, Sparkles
+  Phone, Share2, Search, Newspaper, Sparkles, X, MessageCircle
 } from "lucide-react";
 import Image from "next/image";
 
@@ -175,8 +170,8 @@ export default function Portfolio() {
   const [chatLogs, setChatLogs] = useState<{role: 'user' | 'ai', text: string}[]>([
     {role: 'ai', text: "Welcome. I am Sadish's Digital Twin. Ask me anything about his professional trajectory, contact details, or AI products."}
   ]);
-  const chatEndRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -441,40 +436,6 @@ export default function Portfolio() {
               </div>
 
               <div className="lg:col-span-4 space-y-8">
-                {/* AI DIGITAL TWIN - ENHANCED */}
-                <div className="bg-[#106EBE] rounded-[2.5rem] p-8 text-white shadow-2xl space-y-6 relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform duration-1000"></div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold flex items-center gap-3">
-                      <User className="text-[#0FFCBE]" /> Ask about Sadish
-                    </h3>
-                    <div className="w-2 h-2 rounded-full bg-[#0FFCBE] animate-ping"></div>
-                  </div>
-                  <div className="bg-white/10 rounded-2xl p-4 h-96 overflow-y-auto space-y-4 font-medium text-[13px] scroll-smooth custom-scrollbar" id="chat-box">
-                    {chatLogs.map((log, idx) => (
-                      <div key={idx} className={`flex ${log.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[85%] px-4 py-3 rounded-2xl ${log.role === 'user' ? 'bg-white text-[#106EBE] rounded-tr-none shadow-lg' : 'bg-white/10 border border-white/10 rounded-tl-none'}`}>
-                          {log.text}
-                        </div>
-                      </div>
-                    ))}
-                    <div ref={chatEndRef} />
-                  </div>
-                  <form onSubmit={handleChat} className="relative">
-                    <input 
-                      type="text" 
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      placeholder="Try 'Contact Info' or 'Achievements'..."
-                      className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-sm outline-none focus:bg-white/20 transition-all placeholder:text-white/50 pr-14"
-                    />
-                    <button type="submit" className="absolute right-2 top-2 bottom-2 w-10 bg-[#0FFCBE] text-[#106EBE] rounded-xl flex items-center justify-center hover:scale-95 transition-transform">
-                      <Send size={18} />
-                    </button>
-                  </form>
-                  <p className="text-[10px] text-white/40 text-center uppercase tracking-widest font-black">Powered by Digital Twin Engine v1.0</p>
-                </div>
-
                 {/* EDUCATION */}
                 <div className="bg-white rounded-[2.5rem] p-8 border border-slate-200 space-y-6 shadow-sm">
                   <h3 className="text-xl font-bold text-slate-900 flex items-center gap-3">
@@ -613,6 +574,76 @@ export default function Portfolio() {
           background: rgba(255,255,255,0.3);
         }
       `}</style>
+      {/* FLOATING AI AGENT */}
+      <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end gap-4">
+        <AnimatePresence>
+          {isChatOpen && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="w-[350px] sm:w-[400px] bg-white rounded-[2.5rem] shadow-2xl border border-slate-200 overflow-hidden flex flex-col"
+            >
+              <div className="bg-[#106EBE] p-6 text-white flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                    <User size={20} className="text-[#0FFCBE]" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm leading-none">Digital Sadish</h3>
+                    <span className="text-[10px] text-white/60 uppercase tracking-widest font-medium">AI Portfolio Assistant</span>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setIsChatOpen(false)}
+                  className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              
+              <div className="h-[400px] p-6 overflow-y-auto space-y-4 bg-slate-50 flex flex-col">
+                {chatLogs.map((log, idx) => (
+                  <div key={idx} className={`flex ${log.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-[13px] font-medium ${log.role === 'user' ? 'bg-[#106EBE] text-white rounded-tr-none' : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-sm'}`}>
+                      {log.text}
+                    </div>
+                  </div>
+                ))}
+                <div ref={chatEndRef} />
+              </div>
+
+              <form onSubmit={handleChat} className="p-4 bg-white border-t border-slate-100 flex gap-2">
+                <input 
+                  type="text" 
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  placeholder="Ask me anything..."
+                  className="flex-1 bg-slate-100 border-none rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#106EBE]/20 transition-all"
+                />
+                <button type="submit" className="w-12 h-12 bg-[#106EBE] text-white rounded-xl flex items-center justify-center shadow-lg shadow-[#106EBE]/20 active:scale-95 transition-all">
+                  <Send size={18} />
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <button 
+          onClick={() => setIsChatOpen(!isChatOpen)}
+          className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 group ${isChatOpen ? "bg-slate-900 rotate-90" : "bg-[#106EBE] hover:scale-110"}`}
+        >
+          {isChatOpen ? (
+            <X size={28} className="text-white" />
+          ) : (
+            <>
+              <div className="absolute inset-0 rounded-full bg-[#106EBE] animate-ping opacity-20"></div>
+              <MessageCircle size={28} className="text-white" />
+            </>
+          )}
+        </button>
+      </div>
+
     </div>
   );
 }
