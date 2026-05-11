@@ -6,6 +6,7 @@ const nextConfig = {
   },
   // Tells Next.js to serve the app from the /Sadish sub-directory
   basePath: '/Sadish',
+  trailingSlash: true,
 };
 
 export default nextConfig;
