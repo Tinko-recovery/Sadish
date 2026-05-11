@@ -170,7 +170,7 @@ const getAIResponse = (query: string) => {
 };
 
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState<"enterprise" | "ai" | "blog">("enterprise");
+  const [activeTab, setActiveTab] = useState<"enterprise" | "ai">("enterprise");
   const [chatInput, setChatInput] = useState("");
   const [chatLogs, setChatLogs] = useState<{role: 'user' | 'ai', text: string}[]>([
     {role: 'ai', text: "Welcome. I am Sadish's Digital Twin. Ask me anything about his professional trajectory, contact details, or AI products."}
@@ -285,12 +285,6 @@ export default function Portfolio() {
                 className={`px-6 py-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${activeTab === "ai" ? "bg-white text-[#106EBE] shadow-xl" : "text-slate-500 hover:text-slate-700"}`}
               >
                 AI Systems Lab
-              </button>
-              <button 
-                onClick={() => setActiveTab("blog")}
-                className={`px-6 py-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${activeTab === "blog" ? "bg-white text-[#106EBE] shadow-xl" : "text-slate-500 hover:text-slate-700"}`}
-              >
-                Thought Leadership
               </button>
             </div>
           </div>
@@ -550,81 +544,6 @@ export default function Portfolio() {
                 ))}
               </div>
             </motion.div>
-          ) : (
-            <motion.div 
-              key="blog"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-12"
-            >
-              <div className="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-slate-200 pb-12">
-                <div className="space-y-4">
-                  <h2 className="text-4xl font-black text-slate-900">Thought Leadership</h2>
-                  <p className="text-slate-500 text-lg max-w-xl">Deep dives into Big Data Infrastructure, Agentic AI, and Enterprise Delivery Management.</p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="relative">
-                    <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                    <input type="text" placeholder="Search insights..." className="pl-12 pr-6 py-3 rounded-full bg-white border border-slate-200 text-sm outline-none focus:border-[#106EBE] transition-all" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "The Future of Big Data: From Lakehouses to Agentic Mesh",
-                    category: "Engineering",
-                    date: "May 2024",
-                    read: "8 min read"
-                  },
-                  {
-                    title: "Strategic P&L: Why Delivery Leaders Must Master the Balance Sheet",
-                    category: "Leadership",
-                    date: "April 2024",
-                    read: "12 min read"
-                  },
-                  {
-                    title: "Deploying Claude in Enterprise: Lessons from a GEO Audit Engine",
-                    category: "AI Architecture",
-                    date: "March 2024",
-                    read: "10 min read"
-                  }
-                ].map((post, i) => (
-                  <motion.div 
-                    key={i}
-                    whileHover={{ y: -10 }}
-                    className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 flex flex-col group"
-                  >
-                    <div className="aspect-video bg-slate-100 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#106EBE]/20 to-[#0FFCBE]/20 group-hover:scale-110 transition-transform duration-700"></div>
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black text-[#106EBE] uppercase tracking-widest">{post.category}</div>
-                    </div>
-                    <div className="p-8 flex-1 flex flex-col">
-                      <div className="flex justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
-                        <span>{post.date}</span>
-                        <span>{post.read}</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 leading-tight mb-6 group-hover:text-[#106EBE] transition-colors">{post.title}</h3>
-                      <div className="mt-auto pt-6 border-t border-slate-100 flex justify-between items-center">
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#106EBE] flex items-center gap-2 group-hover:gap-4 transition-all">Read Article <ArrowUpRight size={14} /></a>
-                        <Share2 size={16} className="text-slate-300 hover:text-[#106EBE] cursor-pointer" />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="bg-slate-900 rounded-[3rem] p-12 text-white flex flex-col items-center text-center space-y-6">
-                <Newspaper size={48} className="text-[#0FFCBE]" />
-                <h3 className="text-3xl font-black">Subscribe to Strategic Insights</h3>
-                <p className="text-slate-400 max-w-md">Join 500+ technology leaders receiving monthly updates on AI delivery and data infrastructure.</p>
-                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-                  <input type="email" placeholder="you@company.com" className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-sm outline-none focus:bg-white/20 transition-all" />
-                  <button className="bg-[#0FFCBE] text-[#106EBE] px-8 py-4 rounded-full font-bold text-sm shadow-xl active:scale-95 transition-all">Join Waitlist</button>
-                </div>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
