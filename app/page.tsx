@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Phone, Share2, Search, Newspaper, Sparkles, X, MessageCircle
+  Phone, Share2, Search, Newspaper, Sparkles, X, MessageCircle, Milestone, MapPin, TrendingUp
 } from "lucide-react";
 import Image from "next/image";
 
