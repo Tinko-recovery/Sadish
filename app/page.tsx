@@ -20,23 +20,30 @@ const RESUME_DATA = {
     {
       company: "Kyndryl",
       role: "Senior Manager – Delivery Head",
-      period: "2019 – Present",
+      period: "Nov 2021 – Present",
       location: "Bangalore, KA",
-      description: "Full P&L ownership, QBRs, and CXO-level governance for Cloudera Big Data Engineering Operations. Grew account revenue by 60% YoY.",
+      description: "Full P&L ownership and CXO-level governance for Cloudera Big Data Engineering Operations. Grew account revenue by 60% YoY.",
       achievements: [
         "Led 16-to-6 data centre consolidation program.",
         "Onboarded Big Data Engineering Support in record 3 months.",
-        "Automated Cloudera alerts integration with Remedy.",
-        "$500K+ cost savings generated via process reengineering."
+        "$500K+ annual cost savings generated via process reengineering."
       ],
       velocity: 95,
-      driver: "Strategic P&L & AI Governance",
-      labelOffset: 0
+      driver: "Strategic P&L & AI Governance"
+    },
+    {
+      company: "IBM (Kyndryl Spin-off)",
+      role: "Service Delivery Leader",
+      period: "Oct 2019 – Oct 2021",
+      location: "Bangalore, KA",
+      description: "Managed complex infrastructure delivery for global financial accounts prior to the Kyndryl spin-off.",
+      velocity: 85,
+      driver: "Service Delivery Excellence"
     },
     {
       company: "AT&T",
       role: "Senior Specialist – Infrastructure",
-      period: "2016 – 2019",
+      period: "Jul 2016 – Sep 2019",
       location: "Bangalore, KA",
       description: "Managed global enterprise storage infrastructure at massive scale. Optimized allocation processes for high-impact cost efficiency.",
       achievements: [
@@ -44,42 +51,34 @@ const RESUME_DATA = {
         "Spearheaded zero-disruption AT&T-to-IBM transition."
       ],
       velocity: 75,
-      driver: "Global Scale Efficiency",
-      labelOffset: 40
+      driver: "Global Scale Efficiency"
     },
     {
       company: "EMC Data Services",
       role: "Associate Principal Engineer",
-      period: "2011 – 2016",
+      period: "Jun 2011 – Jun 2016",
       location: "Bangalore, KA",
       description: "Subject matter expert on EMC VMAX enterprise systems. Advanced through two promotions based on technical excellence.",
-      achievements: [
-        "Authored organization-wide adopted KB articles.",
-        "Received 4 major performance awards for critical system support."
-      ],
-      velocity: 55,
-      driver: "Technical SME Leadership",
-      labelOffset: 0
+      velocity: 60,
+      driver: "Technical SME Leadership"
     },
     {
       company: "Sutherland Global Services",
       role: "Customer Support Engineer",
-      period: "2009 – 2011",
+      period: "Jan 2009 – May 2011",
       location: "Bangalore, KA",
       description: "Specialized hardware and software support for Dell enterprise clients.",
-      velocity: 35,
-      driver: "Enterprise Client Systems",
-      labelOffset: 40
+      velocity: 40,
+      driver: "Enterprise Client Systems"
     },
     {
       company: "Wipro Technologies",
       role: "Project Engineer – Storage Admin",
-      period: "2007 – 2009",
+      period: "Jun 2007 – Dec 2008",
       location: "Bangalore, KA",
       description: "Supported EMC CLARiiON storage environments for global enterprise clients.",
-      velocity: 20,
-      driver: "Technical Foundation",
-      labelOffset: 0
+      velocity: 25,
+      driver: "Technical Foundation"
     }
   ],
   education: [
@@ -316,122 +315,72 @@ export default function Portfolio() {
                   </h2>
                 </div>
 
-                {/* CAREER CHART WITH IMPROVED EXPERT DATA LABELS */}
-                <div className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm overflow-visible h-[550px] flex flex-col relative group/chart">
-                  <div className="flex justify-between items-start mb-16">
-                    <div>
-                      <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Growth Catalyst Mapping</h4>
-                      <p className="text-[10px] text-slate-400 font-medium italic">Mapping technical leadership to global delivery scale.</p>
-                    </div>
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#106EBE]/5 border border-[#106EBE]/10">
-                      <ArrowUpRight size={14} className="text-[#106EBE]" />
-                      <span className="text-[10px] font-black text-[#106EBE] uppercase tracking-widest">Impact Velocity</span>
-                    </div>
-                  </div>
+                {/* CAREER TIMELINE ROADMAP */}
+                <div className="relative pb-12">
+                  <h2 className="text-3xl font-bold text-slate-900 mb-12 flex items-center gap-3">
+                    <Milestone className="text-[#106EBE]" /> Career Growth Roadmap
+                  </h2>
                   
-                  <div className="flex-1 flex items-end gap-3 px-2 relative">
-                    {/* Horizontal Milestone Markers */}
-                    <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10 px-2 pb-16">
-                      {[100, 75, 50, 25, 0].map((level) => (
-                        <div key={level} className="border-t border-slate-900 w-full relative">
-                          <span className="absolute -left-8 -top-2 text-[8px] font-bold text-slate-400">{level}%</span>
+                  <div className="relative space-y-12 before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[2px] before:bg-gradient-to-b before:from-[#106EBE] before:via-[#0FFCBE] before:to-slate-100">
+                    {RESUME_DATA.experience.map((exp, i) => (
+                      <motion.div 
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className="relative pl-12 group"
+                      >
+                        {/* Timeline Node */}
+                        <div className="absolute left-0 top-1.5 w-10 h-10 rounded-full border-4 border-white bg-white shadow-xl flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+                          <div className={`w-3 h-3 rounded-full ${i === 0 ? "bg-[#106EBE] animate-pulse" : "bg-slate-300 group-hover:bg-[#106EBE] transition-colors"}`}></div>
                         </div>
-                      ))}
-                    </div>
 
-                    {RESUME_DATA.experience.slice().reverse().map((exp, i) => (
-                      <div key={i} className="flex-1 flex flex-col items-center group relative h-full justify-end">
-                        
-                        {/* STAGGERED EXPERT DATA LABEL */}
-                        <motion.div 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: isClient ? 1 : 0, y: 0 }}
-                          transition={{ delay: 0.8 + (i * 0.1) }}
-                          className="absolute w-full text-center z-30"
-                          style={{ bottom: `calc(${exp.velocity}% + 10px + ${exp.labelOffset}px)` }}
-                        >
-                          <div className="inline-block px-3 py-2 rounded-xl bg-white border border-[#106EBE]/20 shadow-xl group-hover:border-[#106EBE] transition-all transform group-hover:-translate-y-1">
-                            <p className="text-[8px] font-black text-[#106EBE] uppercase tracking-tighter leading-tight whitespace-nowrap mb-0.5">
-                              {exp.driver}
-                            </p>
-                          </div>
-                          {/* Variable Height Connector Line */}
-                          <div 
-                            className="w-[1px] bg-gradient-to-b from-[#106EBE]/30 to-transparent mx-auto mt-1"
-                            style={{ height: `${exp.labelOffset + 10}px` }}
-                          ></div>
-                        </motion.div>
-
-                        {/* Bar */}
-                        <div className="w-full relative h-full flex flex-col justify-end">
-                          <div 
-                            className="w-full rounded-t-2xl bg-gradient-to-t from-[#106EBE] to-[#0FFCBE] relative shadow-lg shadow-[#106EBE]/5 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] origin-bottom group-hover:to-[#106EBE] group-hover:shadow-[#106EBE]/20 group-hover:scale-x-105"
-                            style={{ 
-                              height: isClient ? `${exp.velocity}%` : '0%',
-                              transitionDelay: `${i * 100}ms`
-                            }}
-                          >
-                            {/* Value Marker */}
-                            <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] font-black text-white/40 opacity-0 group-hover:opacity-100 transition-opacity">
-                              {exp.velocity}%
+                        {/* Content Card */}
+                        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:border-[#106EBE]/20 transition-all duration-500 relative overflow-hidden">
+                          {/* Progress/Impact Indicator */}
+                          <div className="absolute top-0 right-0 w-2 h-full bg-[#106EBE]/5 group-hover:bg-[#106EBE]/10 transition-colors"></div>
+                          
+                          <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                            <div>
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="text-[10px] font-black text-[#106EBE] uppercase tracking-[0.2em] bg-[#106EBE]/5 px-3 py-1 rounded-full">{exp.period}</span>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1"><MapPin size={10} /> {exp.location}</span>
+                              </div>
+                              <h3 className="text-2xl font-black text-slate-900 group-hover:text-[#106EBE] transition-colors">{exp.role}</h3>
+                              <p className="text-lg font-bold text-slate-600">{exp.company}</p>
                             </div>
                             
-                            {/* Tooltip */}
-                            <div className="absolute -top-20 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-slate-900 text-white text-[10px] font-bold px-4 py-3 rounded-2xl whitespace-nowrap z-40 shadow-2xl scale-95 group-hover:scale-100">
-                              <div className="text-[#0FFCBE] mb-1">{exp.period}</div>
-                              <div className="text-white mb-1">{exp.company}</div>
-                              <div className="text-slate-400 text-[8px] uppercase tracking-widest">{exp.role}</div>
+                            <div className="flex flex-col items-end">
+                              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Impact Velocity</div>
+                              <div className="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                <motion.div 
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: `${exp.velocity}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 1, delay: i * 0.2 }}
+                                  className="h-full bg-gradient-to-r from-[#106EBE] to-[#0FFCBE]"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        {/* Year Label */}
-                        <div className="text-[10px] font-black text-slate-400 mt-6 rotate-45 origin-left tracking-tighter whitespace-nowrap group-hover:text-[#106EBE] transition-colors">
-                          {exp.period.split(' ')[0]}
+                          <p className="text-slate-500 text-sm leading-relaxed mb-6 max-w-3xl">{exp.description}</p>
+                          
+                          {exp.achievements && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {exp.achievements.map((a, j) => (
+                                <div key={j} className="flex gap-3 text-[11px] font-medium text-slate-600 bg-slate-50/50 p-4 rounded-2xl border border-slate-100/50 group-hover:bg-white transition-colors">
+                                  <div className="w-5 h-5 rounded-full bg-[#0FFCBE]/20 text-[#106EBE] flex items-center justify-center text-[10px] shrink-0 font-black">✓</div>
+                                  {a}
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                </div>
-
-                {/* Trajectory List */}
-                <div className="space-y-8 relative before:absolute before:left-[19px] before:top-4 before:bottom-0 before:w-1 before:bg-slate-100">
-                  {RESUME_DATA.experience.map((exp, i) => (
-                    <motion.div 
-                      key={i}
-                      whileHover={{ x: 10 }}
-                      className="relative pl-12 group cursor-default"
-                    >
-                      <div className="absolute left-0 top-1.5 w-10 h-10 rounded-full border-4 border-white bg-white shadow-md flex items-center justify-center z-10">
-                        <div className={`w-3 h-3 rounded-full ${i === 0 ? "bg-[#106EBE] animate-pulse" : "bg-slate-300"}`}></div>
-                      </div>
-                      <div className="bg-white p-8 rounded-3xl border border-slate-200 hover:border-[#106EBE]/30 transition-all shadow-sm hover:shadow-xl">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                          <div>
-                            <span className="text-xs font-bold text-[#106EBE] uppercase tracking-widest">{exp.period}</span>
-                            <h3 className="text-2xl font-black text-slate-900">{exp.role}</h3>
-                            <div className="flex items-center gap-2 text-slate-500 text-sm font-medium">
-                              <MapPin size={14} /> {exp.company} • {exp.location}
-                            </div>
-                          </div>
-                          <div className="px-3 py-1 rounded-full bg-[#106EBE]/5 border border-[#106EBE]/10 text-[10px] font-black text-[#106EBE] uppercase tracking-widest">
-                            {exp.driver}
-                          </div>
-                        </div>
-                        <p className="text-slate-500 text-sm leading-relaxed mb-6">{exp.description}</p>
-                        {exp.achievements && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {exp.achievements.map((a, j) => (
-                              <div key={j} className="flex gap-3 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                <div className="text-[#0FFCBE] font-bold">✓</div>
-                                {a}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
                 </div>
               </div>
 
@@ -582,47 +531,55 @@ export default function Portfolio() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="w-[350px] sm:w-[400px] bg-white rounded-[2.5rem] shadow-2xl border border-slate-200 overflow-hidden flex flex-col"
+              className="w-[95vw] sm:w-[400px] h-[80vh] sm:h-[600px] bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-white/20 overflow-hidden flex flex-col"
             >
-              <div className="bg-[#106EBE] p-6 text-white flex items-center justify-between">
+              <div className="bg-gradient-to-r from-[#106EBE] to-[#0FFCBE] p-6 text-white flex items-center justify-between shadow-lg">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                    <User size={20} className="text-[#0FFCBE]" />
+                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                    <Sparkles size={24} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm leading-none">Digital Sadish</h3>
-                    <span className="text-[10px] text-white/60 uppercase tracking-widest font-medium">AI Portfolio Assistant</span>
+                    <h3 className="font-black text-base leading-tight tracking-tight">Digital Sadish</h3>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#0FFCBE] animate-pulse"></div>
+                      <span className="text-[10px] text-white/80 uppercase tracking-widest font-bold">Online • AI Assistant</span>
+                    </div>
                   </div>
                 </div>
                 <button 
                   onClick={() => setIsChatOpen(false)}
-                  className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                  className="w-10 h-10 rounded-2xl bg-black/10 flex items-center justify-center hover:bg-black/20 transition-all active:scale-90"
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
               
-              <div className="h-[400px] p-6 overflow-y-auto space-y-4 bg-slate-50 flex flex-col">
+              <div className="flex-1 p-6 overflow-y-auto space-y-6 bg-slate-50/50 flex flex-col custom-scrollbar">
                 {chatLogs.map((log, idx) => (
-                  <div key={idx} className={`flex ${log.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-[13px] font-medium ${log.role === 'user' ? 'bg-[#106EBE] text-white rounded-tr-none' : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-sm'}`}>
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, x: log.role === 'user' ? 20 : -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className={`flex ${log.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div className={`max-w-[85%] px-5 py-4 rounded-[1.5rem] text-[13px] font-medium leading-relaxed shadow-sm ${log.role === 'user' ? 'bg-[#106EBE] text-white rounded-tr-none' : 'bg-white border border-slate-100 text-slate-800 rounded-tl-none'}`}>
                       {log.text}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
                 <div ref={chatEndRef} />
               </div>
 
-              <form onSubmit={handleChat} className="p-4 bg-white border-t border-slate-100 flex gap-2">
+              <form onSubmit={handleChat} className="p-4 bg-white border-t border-slate-100 flex gap-3">
                 <input 
                   type="text" 
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   placeholder="Ask me anything..."
-                  className="flex-1 bg-slate-100 border-none rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#106EBE]/20 transition-all"
+                  className="flex-1 bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-sm outline-none focus:ring-2 focus:ring-[#106EBE]/10 transition-all"
                 />
-                <button type="submit" className="w-12 h-12 bg-[#106EBE] text-white rounded-xl flex items-center justify-center shadow-lg shadow-[#106EBE]/20 active:scale-95 transition-all">
-                  <Send size={18} />
+                <button type="submit" className="w-14 h-14 bg-[#106EBE] text-white rounded-2xl flex items-center justify-center shadow-xl shadow-[#106EBE]/20 active:scale-95 transition-all hover:bg-[#0d599a]">
+                  <Send size={20} />
                 </button>
               </form>
             </motion.div>
