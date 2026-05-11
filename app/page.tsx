@@ -156,7 +156,7 @@ const getAIResponse = (query: string) => {
   if (q.includes("ai") || q.includes("product") || q.includes("portfolio") || q.includes("develop")) {
     return "Sadish has developed 5 flagship AI products: 1. GEO Citation Audit System, 2. Hospitality ERP, 3. Construction SaaS, 4. Field Ops PWA, and 5. AI Content Gen. Which one should I explain in detail?";
   }
-  if (q.includes("education") || q.includes("study") || q.includes("degree")) {
+  if (q.includes("education") || q.includes("study") || q.includes("degree") || q.includes("qualification")) {
     return `Sadish is currently pursuing a BBA (Expected Nov 2026). He also holds a Diploma in Electrical & Electronics Engineering from Chennai.`;
   }
   if (q.includes("saving") || q.includes("cost") || q.includes("money") || q.includes("achieve")) {
