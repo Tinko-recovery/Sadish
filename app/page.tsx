@@ -7,6 +7,7 @@ import {
   Mail, Linkedin, Github, GraduationCap, BookOpen, Award, Server, Globe, Send
 } from "lucide-react";
 import Image from "next/image";
+import profilePic from "../public/profile.jpg";
 
 // --- DATA REPOSITORY ---
 
@@ -311,7 +312,7 @@ export default function Portfolio() {
               <div className="absolute -inset-1 bg-gradient-to-r from-[#106EBE] to-[#0FFCBE] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
               <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl">
                 <Image 
-                  src="/Sadish/profile.jpg" 
+                  src={profilePic} 
                   alt={RESUME_DATA.name} 
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
