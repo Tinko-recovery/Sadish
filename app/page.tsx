@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Phone, Share2, Search, Newspaper, Sparkles, X, MessageCircle, Milestone, MapPin, TrendingUp
+  Phone, Share2, Search, Newspaper, Sparkles, X, MessageCircle, Milestone, MapPin, TrendingUp, MessageSquare, Cpu, Layout, Shield, Zap,
+  Mail, Linkedin, Github, GraduationCap, BookOpen, Award, Server, Globe, Send
 } from "lucide-react";
 import Image from "next/image";
 
@@ -163,14 +164,23 @@ const getAIResponse = (query: string) => {
   return "I'm equipped with Sadish's full resume. Try asking about his 'Contact Info', 'Career History', 'AI Products', or 'Cost Savings achievements'.";
 };
 
+const QUICK_QUESTIONS = [
+  "What are your core AI products?",
+  "Tell me about your Kyndryl experience.",
+  "How can I contact you?",
+  "Tell me about your cost savings."
+];
+
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<"enterprise" | "ai">("enterprise");
   const [chatInput, setChatInput] = useState("");
   const [chatLogs, setChatLogs] = useState<{role: 'user' | 'ai', text: string}[]>([
     {role: 'ai', text: "Welcome. I am Sadish's Digital Twin. Ask me anything about his professional trajectory, contact details, or AI products."}
   ]);
+  const chatEndRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -189,10 +199,23 @@ export default function Portfolio() {
     setChatLogs(prev => [...prev, {role: 'user', text: userMsg}]);
     setChatInput("");
     
+    setIsTyping(true);
+    
     setTimeout(() => {
       const response = getAIResponse(userMsg);
       setChatLogs(prev => [...prev, {role: 'ai', text: response}]);
-    }, 600);
+      setIsTyping(false);
+    }, 1200);
+  };
+
+  const sendQuickQuestion = (q: string) => {
+    setChatLogs(prev => [...prev, {role: 'user', text: q}]);
+    setIsTyping(true);
+    setTimeout(() => {
+      const response = getAIResponse(q);
+      setChatLogs(prev => [...prev, {role: 'ai', text: response}]);
+      setIsTyping(false);
+    }, 1000);
   };
 
   return (
@@ -288,7 +311,7 @@ export default function Portfolio() {
               <div className="absolute -inset-1 bg-gradient-to-r from-[#106EBE] to-[#0FFCBE] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
               <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl">
                 <Image 
-                  src="/Sadish/profile.jpg" 
+                  src="/profile.jpg" 
                   alt={RESUME_DATA.name} 
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -454,8 +477,7 @@ export default function Portfolio() {
                 ))}
               </div>
             </motion.div>
-            </motion.div>
-          )}
+          ) : null}
         </AnimatePresence>
 
       </main>
@@ -567,6 +589,36 @@ export default function Portfolio() {
                     </div>
                   </motion.div>
                 ))}
+                {isTyping && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-white border border-slate-100 px-5 py-3 rounded-[1.5rem] rounded-tl-none shadow-sm flex items-center gap-2">
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 bg-[#106EBE] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                        <span className="w-1.5 h-1.5 bg-[#106EBE] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                        <span className="w-1.5 h-1.5 bg-[#106EBE] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                      </div>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Sadish is thinking...</span>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {!isTyping && chatLogs.length === 1 && (
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {QUICK_QUESTIONS.map((q, i) => (
+                      <button 
+                        key={i}
+                        onClick={() => sendQuickQuestion(q)}
+                        className="text-[11px] font-bold text-[#106EBE] bg-[#106EBE]/5 border border-[#106EBE]/10 px-4 py-2 rounded-xl hover:bg-[#106EBE] hover:text-white transition-all active:scale-95"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 <div ref={chatEndRef} />
               </div>
 
